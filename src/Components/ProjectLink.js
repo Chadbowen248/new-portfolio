@@ -6,11 +6,10 @@ const ProjectLink = ({linkText, link, external, madeWith}) => {
    return <li>
             <div className="funky">
                 {linkElement}
-                <p className="copy">Made with: {madeWith}
+                <p className="copy">Made with: {madeWith} </p>
                     <a href="#" className="display" aria-label="View source code on Github">
                     <FontAwesomeIcon icon={['fab', 'github']} />
                     </a>
-                </p>
             </div>
          </li>
 }

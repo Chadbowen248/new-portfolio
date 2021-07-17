@@ -13,33 +13,63 @@
   --white: rgb(255, 255, 255);
 }
 
-body {
-  background-color: var(--dark);
-  margin: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-ul {
-  list-style-type: none;
-  padding-left: 0;
+h1 {
+  font-size: clamp(1.75rem, 3vw, 2rem);
 }
 
 #root {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+}
+
+.intro,
+.about-me {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+body {
+  background-color: var(--dark);
+  margin: 0;
+  font-family: "Anton";
+}
+
+a {
+  text-decoration: none;
+  font-size: clamp(1rem, 1.875vw, 1.25rem);
+}
+
+ul {
+  list-style-type: none;
+}
+
+.intro {
+  color: var(--white);
 }
 
 .about-me {
   background-color: white;
   height: 100vh;
-  padding: 15px;
 }
 
-.projects {
-  padding-left: 25px;
+.projects-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  justify-content: center;
+}
+
+.projects-list li {
+  padding: 0.5rem;
+}
+
+.projects-list svg {
+  margin-left: 0.5rem;
 }
 
 .copy {
@@ -47,22 +77,15 @@ ul {
   color: var(--pink);
   font-family: "Anton";
   margin: 0;
-}
-
-.copy a {
-  margin-left: 5px;
-}
-
-.list-spacing > * + * {
-  margin-top: 1.5rem;
+  display: none;
 }
 
 .display {
   color: var(--pink);
-  font-family: "computer";
+  /* font-family: "computer"; */
 }
 
-.funky {
+/* .funky {
   display: inline-block;
   position: relative;
   font-size: 2.5em;
@@ -86,14 +109,24 @@ ul {
   height: 110%;
   width: 110%;
   box-shadow: 3px 3px 3px 0px black;
-}
+} */
 
 .project-info {
   border: 3px solid var(--pink);
   color: var(--white);
 }
 
-#root {
+/* #root {
   display: grid;
   grid-template-columns: 1fr 1fr;
+} */
+@media (min-width: 760px) {
+  #root {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .about-me {
+    grid-column: 1 / span 2;
+  }
 }

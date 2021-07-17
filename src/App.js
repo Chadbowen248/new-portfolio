@@ -45,7 +45,16 @@ const App = () => {
   ]
   return (
     <Router>
-        <div className="about-me">
+      <div className="intro">
+        <h1>Hey There</h1> 
+        <p>I'm Chad, a web developer with a love for React, CSS, and advocate for a11y best practices, below are some of the projects I've worked on.</p>
+      </div>
+      <div className="projects">
+        <ul className="projects-list">
+            {projects.map((project) => <ProjectLink {...project} key={project.linkText}/>)}
+        </ul>
+      </div>
+      <div className="about-me">
           <Switch>
             <Route exact path="/">
               <AboutMe />
@@ -60,12 +69,6 @@ const App = () => {
               <CryptoPaymentApp />
             </Route>
           </Switch>
-        </div>
-      <div className="projects">
-      <ul className="list-spacing">
-
-          {projects.map((project) => <ProjectLink {...project} key={project.linkText}/>)}
-      </ul>
         </div>
     </Router>
   );
