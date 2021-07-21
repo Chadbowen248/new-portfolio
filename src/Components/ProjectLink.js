@@ -1,17 +1,19 @@
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ProjectLink = ({linkText, link, external, madeWith}) => {
-   const linkElement = external ? <a href={link} className="display">{linkText}</a> : <Link to={link} className="display">{linkText}</Link>
-   return <li>
-            <div className="funky">
-                {linkElement}
-                <p className="copy">Made with: {madeWith} </p>
-                    <a href="#" className="display" aria-label="View source code on Github">
-                    <FontAwesomeIcon icon={['fab', 'github']} />
-                    </a>
-            </div>
-         </li>
+const LinkorAnchorTag = ({link, external, children}) => {
+    return external ? <a href={link} className="projects__link">{children} 
+    {external && <FontAwesomeIcon icon={['fas', 'external-link-alt']} />}</a> :
+    <Link to={link} className="projects__link">{children}</Link>
 }
+
+const ProjectLink = ({linkText, link, madeWith, external}) => {
+    return <li>
+                <LinkorAnchorTag link={link} external={external}>
+                    {/* more stuff goes here */}
+                    {linkText}
+                </LinkorAnchorTag>          
+           </li>
+ }
 
 export default ProjectLink
