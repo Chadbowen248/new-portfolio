@@ -4,7 +4,6 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import {Link} from "react-router-dom";
 import MoviePosterSearch from "./Components/MoviePosterSearch";
 import SteppedSignUpForm from "./Components/SteppedSignUpForm";
 import CryptoPaymentApp from "./Components/CryptoPaymentApp";
@@ -53,10 +52,10 @@ const App = () => {
           <ul className="header-nav">
             <li>Chad Bowen</li>
             <li>
-              <a href="#" className="header-nav__link" aria-label="View source code on Github"><span className="header-nav__link--text">Github</span><FontAwesomeIcon icon={['fab', 'github']} className="header-nav__link--icon" /></a>
+              <a href="www.google.com" className="header-nav__link" aria-label="View source code on Github"><span className="header-nav__link--text">Github</span><FontAwesomeIcon icon={['fab', 'github']} className="header-nav__link--icon" /></a>
             </li>
             <li>
-              <a href="#" className="header-nav__link" aria-label="View my Linkedin"><span className="header-nav__link--text">Linkedin</span><FontAwesomeIcon icon={['fab', 'linkedin-in']} className="header-nav__link--icon" /></a>
+              <a href="www.google.com" className="header-nav__link" aria-label="View my Linkedin"><span className="header-nav__link--text">Linkedin</span><FontAwesomeIcon icon={['fab', 'linkedin-in']} className="header-nav__link--icon" /></a>
             </li>
           </ul>
         </nav>
