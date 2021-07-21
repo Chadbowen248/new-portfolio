@@ -26,7 +26,6 @@ body {
   background-color: var(--dark);
   margin: 0;
   font-family: "Space Mono";
-  background-image: url("img/texture.png");
 }
 
 a {
