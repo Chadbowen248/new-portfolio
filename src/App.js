@@ -17,31 +17,36 @@ const App = () => {
     {
       linkText: 'Comic Book Tracker',
       link:  'https://comic-app-one.herokuapp.com/',
-      madeWith: 'React, Firebase',
+      madeWith: ['React', 'Firebase', 'Node'],
+      description: 'Search for and add comics to your collection using the ComicVine API.',
       external: true
     },
     {
       linkText: 'Not Date Night Movies',
       link:  'https://movie-app-one.herokuapp.com/',
-      madeWith: 'React, Firebase',
+      madeWith: ['React', 'Firebase', 'Auth0'],
+      description: 'Sign in with your Google account to add and rate movies.',
       external: true
     },
     {
       linkText: 'Movie Poster Search',
       link:  '/moviePosterSearch',
-      madeWith: 'React, Firebase',
+      madeWith: ['React'],
+      description: 'Search for movie posters from an API.',
       external: false
     },
     {
-      linkText: 'Stepped Sign up Form',
+      linkText: 'Order a Pizza',
       link:  '/steppedSignUpForm',
-      madeWith: 'React, Firebase',
+      madeWith: ['React', 'Firebase'],
+      description: 'A stepped form to register an account and order a pizza. (sorry just mock data, a pizza will not come)',
       external: false
     },
     {
-      linkText: 'Crypto Payment App',
+      linkText: 'Crypto Tracker',
       link:  '/cryptoPaymentApp',
-      madeWith: 'React, Firebase',
+      madeWith: ['React', 'local storage'],
+      description: 'Search for and add crypto tickers to keep track of the price. Saved in localStorage.',
       external: false
     },
   ]
