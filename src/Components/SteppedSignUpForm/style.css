@@ -1,0 +1,59 @@
+.pizza-logo {
+  width: 200px;
+  border: solid 10px black;
+  border-radius: 100%;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+button {
+  background-color: transparent;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  border: 2px solid white;
+  margin-bottom: 1em;
+  color: white;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 1em;
+}
+
+form > * + * {
+  margin-top: 2em;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-item {
+  width: 100%;
+}
+
+input,
+select {
+  width: 100%;
+  height: 45px;
+  font-size: 1em;
+}
+
+.form-navigation {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.hidden {
+  visibility: hidden;
+}

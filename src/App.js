@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import MoviePosterSearch from "./Components/MoviePosterSearch";
-import SteppedSignUpForm from "./Components/SteppedSignUpForm";
+import SteppedSignUpForm from "./Components/SteppedSignUpForm/SteppedSignUpForm";
 import CryptoPaymentApp from "./Components/CryptoPaymentApp";
 import AboutMe from "./Components/AboutMe";
 import ProjectLink from "./Components/ProjectLink";

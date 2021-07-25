@@ -11,7 +11,7 @@ const ProjectLink = ({linkText, link, madeWith, external, description}) => {
     return <li>
             <LinkorAnchorTag link={link} external={external}>
                 <div className="projects__item">
-                    {linkText} {external && <FontAwesomeIcon icon={['fas', 'external-link-alt']} />}
+                    <span className="projects__item-container">{linkText} {external && <FontAwesomeIcon icon={['fas', 'external-link-alt']} className="projects__external-icon"/>}</span>
                     <p className="projects__description">{description}</p>
                     <ul className="projects__made-with-list">
                         {madeWith.map((item, index) => <li className="projects__made-with-list-item" key={index}>{item}</li>)}
