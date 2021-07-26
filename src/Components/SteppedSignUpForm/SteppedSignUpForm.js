@@ -197,7 +197,6 @@ const FormikStepper = ({ children, ...props }) => {
       {...props}
       validationSchema={currentStep.props.validationSchema}
       onSubmit={async (values, helpers) => {
-          console.log(values)
         if (step === childrenArray.length - 1) {
           await props.onSubmit(values, helpers);
         } else {
