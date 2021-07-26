@@ -1,6 +1,7 @@
 import { useState } from "react";
 import React from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form, ErrorMessage, useFormikContext } from "formik";
+import valid from 'card-validator';
 import * as Yup from "yup";
 import "./style.css";
 import pizzaLogo from "../../img/pizza.png";
@@ -24,11 +25,11 @@ const [{firstName, lastName, email}, getFormValues] = useState({})
       getFormValues={getFormValues}
       showConfirm={showConfirm}
         initialValues={{
-          firstName: "chad",
-          lastName: "bowen",
-          email: "asdf@af.com",
-          password: "123456",
-          confirmPassword: "123456",
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
           pizzaType: "",
           pizzaSize: "",
           side: "",
@@ -74,17 +75,17 @@ const [{firstName, lastName, email}, getFormValues] = useState({})
           </div>
           <div className="input-item">
             <label htmlFor="email">email</label>
-            <Field name="email" type="text" />
+            <Field name="email" type="email" />
             <ErrorMessage name="email" />
           </div>
           <div className="input-item">
             <label htmlFor="password">Password</label>
-            <Field name="password" type="text" />
+            <Field name="password" type="password" />
             <ErrorMessage name="password" />
           </div>
           <div className="input-item">
             <label htmlFor="confirmPassword">Confirm Password</label>
-            <Field name="confirmPassword" type="text" />
+            <Field name="confirmPassword" type="password" />
             <ErrorMessage name="confirmPassword" />
           </div>
         </FormikStep>
@@ -136,8 +137,8 @@ const [{firstName, lastName, email}, getFormValues] = useState({})
 
         <FormikStep
           validationSchema={Yup.object().shape({
-            creditCard: Yup.string().required(),
-            expDate: Yup.date().required(),
+            creditCard: Yup.string().test('test-number', 'Credit Card is invalid', value => valid.number(value).isValid).required(),
+            expDate: Yup.string().test('date-test', 'Please Check exp date.', value => valid.expirationDate(value).isValid).required()
           })}
         >
        <div className="input-item">
@@ -147,14 +148,43 @@ const [{firstName, lastName, email}, getFormValues] = useState({})
         </div>
        <div className="input-item">
             <label htmlFor="expDate">Exp Date</label>
-            <Field name="expDate" type="date" />
+            <Field name="expDate" type="text" placeholder="mm/yy"/>
             <ErrorMessage name="expDate" />
         </div>
+        </FormikStep>
+        <FormikStep>
+            <Review />
         </FormikStep>
       </FormikStepper>}
     </div>
   );
 };
+
+const Review = () => {
+    const {values} = useFormikContext();
+    return <div>
+        <h1>Review Order</h1>
+        <dl className="review-list">
+            <div>
+                <dt>Name:</dt>
+                <dd>{values.firstName} {values.lastName}</dd>
+            </div>
+            <div>
+                <dt>Pizza:</dt>
+                <dd>A {values.pizzaSize} {values.pizzaType}</dd>
+            </div>
+            <div>
+                <dt>Sides:</dt>
+                <dd>{values.side}</dd>
+            </div>
+            <div>
+                <dt>Drink:</dt>
+                <dd>{values.drink}</dd>
+            </div>
+        </dl>
+        </div>
+
+}
 
 const FormikStep = ({ children }) => <>{children}</>;
 
@@ -167,6 +197,7 @@ const FormikStepper = ({ children, ...props }) => {
       {...props}
       validationSchema={currentStep.props.validationSchema}
       onSubmit={async (values, helpers) => {
+          console.log(values)
         if (step === childrenArray.length - 1) {
           await props.onSubmit(values, helpers);
         } else {

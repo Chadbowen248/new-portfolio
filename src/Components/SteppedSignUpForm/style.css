@@ -41,6 +41,11 @@ form > * + * {
   width: 100%;
 }
 
+.review-list * {
+  display: flex;
+  font-size: 1.2em;
+}
+
 input,
 select {
   width: 100%;
