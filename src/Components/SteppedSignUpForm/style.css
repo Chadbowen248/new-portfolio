@@ -1,9 +1,9 @@
 .pizza-logo {
-  width: 200px;
-  border: solid 10px black;
+  width: 100px;
+  border: solid 7px black;
   border-radius: 100%;
-  padding: 20px;
-  margin-bottom: 30px;
+  margin-right: 1em;
+  padding: 5px;
 }
 
 button {
@@ -18,38 +18,60 @@ button {
 
 form {
   width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.stepper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-around;
+  width: 100%;
 }
 
-label {
-  display: block;
-  margin-bottom: 1em;
+.stepper li {
+  padding: 0.5em;
+  font-size: 14px;
+  border-radius: 1em;
 }
 
-form > * + * {
-  margin-top: 2em;
+.currentStep {
+  background-color: var(--white);
+  color: var(--darker);
 }
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: calc(90% - 3em);
 }
 
+.input-item + .input-item {
+  margin-top: 2em;
+}
 .input-item {
   width: 100%;
+  position: relative;
 }
 
 .review-list * {
   display: flex;
   font-size: 1.2em;
 }
+.pizza-logo-container {
+  display: flex;
+  align-self: normal;
+  align-items: center;
+  margin-top: 1em;
+}
+.error {
+  position: absolute;
+  background-color: var(--white);
+  color: red;
+  padding: 5px;
+}
 
 input,
 select {
   width: 100%;
-  height: 45px;
+  height: 2.4em;
   font-size: 1em;
 }
 

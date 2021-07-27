@@ -1,18 +1,24 @@
 import { useState } from "react";
 import React from "react";
-import { Formik, Field, Form, ErrorMessage, useFormikContext } from "formik";
+import {  Field, ErrorMessage } from "formik";
+import { Review } from "./Review"
+import {FormikStep, FormikStepper} from "./FormikStepper"
 import valid from 'card-validator';
 import * as Yup from "yup";
 import "./style.css";
 import pizzaLogo from "../../img/pizza.png";
+const sleep = (time) => new Promise((acc) => setTimeout(acc, time));
 
 const SteppedSignUpForm = () => {
-const [showConfirm, setConfirm] = useState(false);
+    const [showConfirm, setConfirm] = useState(false);
+    const [step, setStep] = useState(0);
 const [{firstName, lastName, email}, getFormValues] = useState({})
   return (
     <div className="container">
-      <h1>Hothot Slices</h1>
-      <img src={pizzaLogo} alt="pizza logo" className="pizza-logo" />
+        <div className="pizza-logo-container">
+            <img src={pizzaLogo} alt="pizza logo" className="pizza-logo" />
+            <h1>Hothot Slices</h1>
+      </div>
       {showConfirm && 
       <div>
         <h2>Hey thanks {firstName} {lastName}!</h2>
@@ -22,31 +28,30 @@ const [{firstName, lastName, email}, getFormValues] = useState({})
       }
       {!showConfirm && 
       <FormikStepper
+      setStep={setStep}
+      step={step}
       getFormValues={getFormValues}
       showConfirm={showConfirm}
         initialValues={{
-          firstName: "",
-          lastName: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
-          pizzaType: "",
-          pizzaSize: "",
-          side: "",
-          drink: "",
-          creditCard: "",
-          expDate: ""
+          firstName: "Chad",
+          lastName: "Bowen",
+          email: "Chad@gmail.com",
+          password: "batman",
+          confirmPassword: "batman",
+          pizzaType: "Francesco",
+          pizzaSize: "small",
+          side: "Chips",
+          drink: "Pepsi",
+          creditCard: "4111111111111111",
+          expDate: "3/22"
         }}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
-        setSubmitting(true);
-        setTimeout(() => {
-            resetForm();
-            setSubmitting(false);
+        onSubmit={async (values) => {
+            await sleep(3000);
             getFormValues({...values})
             setConfirm(true);
-          }, 1500);
     }}>
-        <FormikStep 
+        <FormikStep
+        label="Register" 
          validationSchema={Yup.object().shape({
         firstName: Yup.string()
             .required('First Name is required'),
@@ -66,30 +71,31 @@ const [{firstName, lastName, email}, getFormValues] = useState({})
           <div className="input-item">
             <label htmlFor="firstName">First Name</label>
             <Field name="firstName" type="text" />
-            <ErrorMessage name="firstName" />
+            <ErrorMessage className="error" component="div" name="firstName" />
           </div>
           <div className="input-item">
             <label htmlFor="lastName">Last Name</label>
             <Field name="lastName" type="text" />
-            <ErrorMessage name="lastName" />
+            <ErrorMessage className="error" component="div" name="lastName" />
           </div>
           <div className="input-item">
             <label htmlFor="email">email</label>
             <Field name="email" type="email" />
-            <ErrorMessage name="email" />
+            <ErrorMessage className="error" component="div" name="email" />
           </div>
           <div className="input-item">
             <label htmlFor="password">Password</label>
             <Field name="password" type="password" />
-            <ErrorMessage name="password" />
+            <ErrorMessage className="error" component="div" name="password" />
           </div>
           <div className="input-item">
             <label htmlFor="confirmPassword">Confirm Password</label>
             <Field name="confirmPassword" type="password" />
-            <ErrorMessage name="confirmPassword" />
+            <ErrorMessage className="error" component="div" name="confirmPassword" />
           </div>
         </FormikStep>
         <FormikStep
+          label="Order"
           validationSchema={Yup.object().shape({
             pizzaType: Yup.string().required(),
             pizzaSize: Yup.string().required(),
@@ -101,41 +107,55 @@ const [{firstName, lastName, email}, getFormValues] = useState({})
             <label htmlFor="pizzaType">Select Pizza</label>
             <Field name="pizzaType" as="select">
                 <option>Choose Pizza</option>
-                <option value="1">one</option>
-                <option value="2">two</option>
+                <option value="Francesco">Francesco</option>
+                <option value="Mona Lisa">Mona Lisa</option>
+                <option value="Spartacus">Spartacus</option>
+                <option value="Thai Kwon Dough">Thai Kwon Dough</option>
+                <option value="Ray's">Ray's</option>
+                <option value="Margherita">Margherita</option>
+                <option value="Big Cheese">Big Cheese</option>
             </Field>
-            <ErrorMessage name="pizzaType" />
+            <ErrorMessage className="error" component="div" name="pizzaType" />
         </div>
         <div className="input-item">
             <label htmlFor="pizzaSize">Select Size</label>
             <Field name="pizzaSize" as="select">
                 <option>Choose Size</option>
                 <option value="small">small</option>
+                <option value="medium">medium</option>
                 <option value="large">large</option>
+                <option value="xtra-large">xtra-large</option>
             </Field>
-            <ErrorMessage name="pizzaSize" />
+            <ErrorMessage className="error" component="div" name="pizzaSize" />
         </div>
         <div className="input-item">
             <label htmlFor="side">Select side</label>
             <Field name="side" as="select">
                 <option>Choose Side</option>
-                <option value="chips">chips</option>
-                <option value="brownie">brownie</option>
+                <option value="Chips">Chips</option>
+                <option value="Scotcharoos">Scotcharoos</option>
+                <option value="Caramelitas">Caramelitas</option>
+                <option value="Double Fudge Brownies">Double Fudge Brownies</option>
+                <option value="Blonde Brownies">Blonde Brownies</option>
             </Field>
-            <ErrorMessage name="side" />
+            <ErrorMessage className="error" component="div" name="side" />
         </div>
         <div className="input-item">
             <label htmlFor="drink">Choose Drink</label>
             <Field name="drink" as="select">
                 <option>Choose Drink</option>
-                <option value="pepsi">pepsi</option>
-                <option value="coke">coke</option>
+                <option value="Pepsi">Pepsi</option>
+                <option value="Mountain Dew">Mountain Dew</option>
+                <option value="Sprite">Sprite</option>
+                <option value="Dr. Pepper">Dr. Pepper</option>
+                <option value="Smart Water">Smart Water</option>
             </Field>
-            <ErrorMessage name="drink" />
+            <ErrorMessage className="error" component="div" name="drink" />
         </div>
         </FormikStep>
 
         <FormikStep
+        label="Payment"
           validationSchema={Yup.object().shape({
             creditCard: Yup.string().test('test-number', 'Credit Card is invalid', value => valid.number(value).isValid).required(),
             expDate: Yup.string().test('date-test', 'Please Check exp date.', value => valid.expirationDate(value).isValid).required()
@@ -144,82 +164,19 @@ const [{firstName, lastName, email}, getFormValues] = useState({})
        <div className="input-item">
             <label htmlFor="creditCard">Credit Card</label>
             <Field name="creditCard" type="text" />
-            <ErrorMessage name="creditCard" />
+            <ErrorMessage className="error" component="div" name="creditCard" />
         </div>
        <div className="input-item">
             <label htmlFor="expDate">Exp Date</label>
             <Field name="expDate" type="text" placeholder="mm/yy"/>
-            <ErrorMessage name="expDate" />
+            <ErrorMessage className="error" component="div" name="expDate" />
         </div>
         </FormikStep>
-        <FormikStep>
+        <FormikStep label="Review">
             <Review />
         </FormikStep>
       </FormikStepper>}
     </div>
-  );
-};
-
-const Review = () => {
-    const {values} = useFormikContext();
-    return <div>
-        <h1>Review Order</h1>
-        <dl className="review-list">
-            <div>
-                <dt>Name:</dt>
-                <dd>{values.firstName} {values.lastName}</dd>
-            </div>
-            <div>
-                <dt>Pizza:</dt>
-                <dd>A {values.pizzaSize} {values.pizzaType}</dd>
-            </div>
-            <div>
-                <dt>Sides:</dt>
-                <dd>{values.side}</dd>
-            </div>
-            <div>
-                <dt>Drink:</dt>
-                <dd>{values.drink}</dd>
-            </div>
-        </dl>
-        </div>
-
-}
-
-const FormikStep = ({ children }) => <>{children}</>;
-
-const FormikStepper = ({ children, ...props }) => {
-  const childrenArray = React.Children.toArray(children);
-  const [step, setStep] = useState(0);
-  const currentStep = childrenArray[step];
-  return (
-    <Formik
-      {...props}
-      validationSchema={currentStep.props.validationSchema}
-      onSubmit={async (values, helpers) => {
-        if (step === childrenArray.length - 1) {
-          await props.onSubmit(values, helpers);
-        } else {
-          setStep((state) => state + 1);
-          helpers.setTouched({});
-        }
-      }}
-    >
-      <Form autoComplete="off">
-        {currentStep}
-        <div className="form-navigation">
-          <button type="button"
-            className={step === 0 ? "hidden" : ""}
-            onClick={() => setStep(step - 1)}
-          >
-            back
-          </button>
-          <button type="submit">
-            {step !== childrenArray.length - 1 ? "Next" : `Submit` }
-          </button>
-        </div>
-      </Form>
-    </Formik>
   );
 };
 
