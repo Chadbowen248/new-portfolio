@@ -1,0 +1,24 @@
+.search-controls {
+  width: 60%;
+  display: flex;
+}
+
+.search-controls input {
+  width: 100%;
+}
+
+.poster-search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-controls__button {
+  margin-left: 1em;
+}
+
+.search-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

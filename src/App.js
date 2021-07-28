@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import MoviePosterSearch from "./Components/MoviePosterSearch";
+import MoviePosterSearch from "./Components/PosterSearch/MoviePosterSearch";
 import SteppedSignUpForm from "./Components/SteppedSignUpForm/SteppedSignUpForm";
 import CryptoPaymentApp from "./Components/CryptoPaymentApp";
 import AboutMe from "./Components/AboutMe";
