@@ -23,9 +23,7 @@ export const FormikStepper = ({ children, setStep, step, ...props }) => {
       {({ isSubmitting }) => (
         <Form autoComplete="off">
           <Stepper array={childrenArray} currentStep={step} />
-          <div>
-            {currentStep}
-          </div>
+          <div>{currentStep}</div>
           <div className="form-navigation">
             <button
               type="button"
