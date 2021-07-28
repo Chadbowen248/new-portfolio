@@ -35,17 +35,17 @@ const SteppedSignUpForm = () => {
           getFormValues={getFormValues}
           showConfirm={showConfirm}
           initialValues={{
-            firstName: "Chad",
-            lastName: "Bowen",
-            email: "Chad@gmail.com",
-            password: "batman",
-            confirmPassword: "batman",
-            pizzaType: "Francesco",
-            pizzaSize: "small",
-            side: "Chips",
-            drink: "Pepsi",
-            creditCard: "4111111111111111",
-            expDate: "3/22",
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+            pizzaType: "",
+            pizzaSize: "",
+            side: "",
+            drink: "",
+            creditCard: "",
+            expDate: "",
           }}
           onSubmit={async (values) => {
             await sleep(3000);
@@ -71,7 +71,7 @@ const SteppedSignUpForm = () => {
           >
             <div className="input-item">
               <label htmlFor="firstName">First Name</label>
-              <Field name="firstName" type="text" />
+              <Field name="firstName" type="text" aria-required="true" />
               <ErrorMessage
                 className="error"
                 component="div"
@@ -80,22 +80,26 @@ const SteppedSignUpForm = () => {
             </div>
             <div className="input-item">
               <label htmlFor="lastName">Last Name</label>
-              <Field name="lastName" type="text" />
+              <Field name="lastName" type="text" aria-required="true" />
               <ErrorMessage className="error" component="div" name="lastName" />
             </div>
             <div className="input-item">
               <label htmlFor="email">email</label>
-              <Field name="email" type="email" />
+              <Field name="email" type="email" aria-required="true" />
               <ErrorMessage className="error" component="div" name="email" />
             </div>
             <div className="input-item">
               <label htmlFor="password">Password</label>
-              <Field name="password" type="password" />
+              <Field name="password" type="password" aria-required="true" />
               <ErrorMessage className="error" component="div" name="password" />
             </div>
             <div className="input-item">
               <label htmlFor="confirmPassword">Confirm Password</label>
-              <Field name="confirmPassword" type="password" />
+              <Field
+                name="confirmPassword"
+                type="password"
+                aria-required="true"
+              />
               <ErrorMessage
                 className="error"
                 component="div"
@@ -114,7 +118,7 @@ const SteppedSignUpForm = () => {
           >
             <div className="input-item">
               <label htmlFor="pizzaType">Select Pizza</label>
-              <Field name="pizzaType" as="select">
+              <Field name="pizzaType" as="select" aria-required="true">
                 <option>Choose Pizza</option>
                 <option value="Francesco">Francesco</option>
                 <option value="Mona Lisa">Mona Lisa</option>
@@ -132,7 +136,7 @@ const SteppedSignUpForm = () => {
             </div>
             <div className="input-item">
               <label htmlFor="pizzaSize">Select Size</label>
-              <Field name="pizzaSize" as="select">
+              <Field name="pizzaSize" as="select" aria-required="true">
                 <option>Choose Size</option>
                 <option value="small">small</option>
                 <option value="medium">medium</option>
@@ -147,7 +151,7 @@ const SteppedSignUpForm = () => {
             </div>
             <div className="input-item">
               <label htmlFor="side">Select side</label>
-              <Field name="side" as="select">
+              <Field name="side" as="select" aria-required="true">
                 <option>Choose Side</option>
                 <option value="Chips">Chips</option>
                 <option value="Scotcharoos">Scotcharoos</option>
@@ -161,7 +165,7 @@ const SteppedSignUpForm = () => {
             </div>
             <div className="input-item">
               <label htmlFor="drink">Choose Drink</label>
-              <Field name="drink" as="select">
+              <Field name="drink" as="select" aria-required="true">
                 <option>Choose Drink</option>
                 <option value="Pepsi">Pepsi</option>
                 <option value="Mountain Dew">Mountain Dew</option>
