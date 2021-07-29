@@ -20,10 +20,8 @@
   --white: rgb(255, 255, 255);
 }
 
-header,
 .intro,
-.about-me,
-.projects {
+.about-me {
   padding-left: 1.675em;
   padding-right: 1.675em;
 }
@@ -46,54 +44,14 @@ a {
   font-family: "Fira Sans";
 }
 
-ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
 li {
   font-size: clamp(1rem, 1.875vw, 1.25rem);
 }
 
-/* Header */
-.header-nav {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  color: var(--white);
-}
-
-.header-nav__link {
-  color: var(--white);
-}
-
-.header-nav__link--text {
-  display: none;
-}
-
-.header-nav__link--icon {
-  margin-left: 0.75rem;
-}
-
-/* Intro */
-.intro__copy {
-  max-width: 800px;
-}
-
 /* Projects */
-
-.projects {
-  display: flex;
-  flex-direction: column;
-  margin-top: 0;
-  max-width: 338px;
-}
 
 .projects__link {
   color: var(--pink);
-}
-
-.projects > * + * {
-  padding-top: 0.3rem;
 }
 
 .projects__description,
@@ -125,10 +83,10 @@ li {
     grid-column-gap: 1em;
   }
 
-  .projects {
+  /* .projects {
     padding-left: 0;
     padding-right: 0;
-  }
+  } */
 
   .projects__item {
     background-color: var(--darker);
@@ -183,22 +141,4 @@ li {
     margin-left: 0;
     margin-right: 0;
   }
-
-  .header-nav__link--icon {
-    display: none;
-  }
-
-  .header-nav__link--text {
-    display: inherit;
-  }
-
-  .header-nav li:last-child {
-    margin-left: 1em;
-  }
 }
-
-/* @media (min-width: 980px) {
-  .projects-list {
-    flex-direction: column;
-  }
-} */

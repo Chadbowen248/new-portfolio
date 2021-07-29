@@ -2,10 +2,29 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MoviePosterSearch from "./Components/PosterSearch/MoviePosterSearch";
 import SteppedSignUpForm from "./Components/SteppedSignUpForm/SteppedSignUpForm";
+import { Header } from "./Components/Header";
+import styled from "styled-components";
+
 import CryptoPaymentApp from "./Components/CryptoPaymentApp";
 import AboutMe from "./Components/AboutMe";
 import ProjectLink from "./Components/ProjectLink";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const ProjectsWrapper = styled.ul`
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding-left: 0;
+  max-width: 338px;
+  padding-right: 1.675em;
+  padding-left: 1.675em;
+  > li + li {
+    padding-top: 0.3rem;
+  }
+  @media (min-width: 760px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+`;
 
 const App = () => {
   const projects = [
@@ -50,53 +69,21 @@ const App = () => {
   ];
   return (
     <Router>
-      <header>
-        <nav>
-          <ul className="header-nav">
-            <li>Chad Bowen</li>
-            <li>
-              <a
-                href="www.google.com"
-                className="header-nav__link"
-                aria-label="View source code on Github"
-              >
-                <span className="header-nav__link--text">Github</span>
-                <FontAwesomeIcon
-                  icon={["fab", "github"]}
-                  className="header-nav__link--icon"
-                />
-              </a>
-            </li>
-            <li>
-              <a
-                href="www.google.com"
-                className="header-nav__link"
-                aria-label="View my Linkedin"
-              >
-                <span className="header-nav__link--text">Linkedin</span>
-                <FontAwesomeIcon
-                  icon={["fab", "linkedin-in"]}
-                  className="header-nav__link--icon"
-                />
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <Header />
       <div className="intro">
         <p>Hey There,</p>
-        <p className="intro__copy">
+        <p>
           I'm Chad, a web developer with a love for React, CSS, and advocate for
           a11y best practices, below are some of the projects I've worked on.
         </p>
       </div>
       <div className="grid-container">
         <nav>
-          <ul className="projects">
+          <ProjectsWrapper>
             {projects.map((project) => (
               <ProjectLink {...project} key={project.linkText} />
             ))}
-          </ul>
+          </ProjectsWrapper>
         </nav>
         <div className="about-me">
           <Switch>
