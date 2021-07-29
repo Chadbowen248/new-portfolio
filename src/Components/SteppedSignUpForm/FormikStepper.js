@@ -21,7 +21,7 @@ export const FormikStepper = ({ children, setStep, step, ...props }) => {
       }}
     >
       {({ isSubmitting }) => (
-        <Form autoComplete="off">
+        <Form autoComplete="off" className="stepper-form">
           <Stepper array={childrenArray} currentStep={step} />
           <div>{currentStep}</div>
           <div className="form-navigation">
