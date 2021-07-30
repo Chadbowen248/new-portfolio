@@ -1,4 +1,4 @@
-const fetch = require('fetch');
+// const fetch = require('fetch');
 
 exports.handler = async function(event, context) {
     const url = process.env.REACT_APP_COINMARKETCAP_API_KEY;
