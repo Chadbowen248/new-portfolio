@@ -1,11 +1,19 @@
 import { useFormikContext } from "formik";
+import styled from "styled-components";
+
+const ReviewList = styled.dl`
+  * {
+    display: flex;
+    font-size: 1.2em;
+  }
+`;
 
 export const Review = () => {
   const { values } = useFormikContext();
   return (
     <div>
       <h1>Review Order</h1>
-      <dl className="review-list">
+      <ReviewList>
         <div>
           <dt>Name:</dt>
           <dd>
@@ -26,7 +34,7 @@ export const Review = () => {
           <dt>Drink:</dt>
           <dd>{values.drink}</dd>
         </div>
-      </dl>
+      </ReviewList>
     </div>
   );
 };
