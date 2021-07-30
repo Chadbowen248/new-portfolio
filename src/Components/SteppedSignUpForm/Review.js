@@ -1,5 +1,5 @@
 import { useFormikContext } from "formik";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const ReviewList = styled.dl`
   * {
