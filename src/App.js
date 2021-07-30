@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MoviePosterSearch from "./Components/PosterSearch/MoviePosterSearch";
 import SteppedSignUpForm from "./Components/SteppedSignUpForm/SteppedSignUpForm";
-import CryptoPaymentApp from "./Components/CryptoPaymentApp";
+import CryptoPaymentApp from "./Components/CryptoTracker/CryptoPaymentApp";
 import AboutMe from "./Components/AboutMe";
 import ProjectLink from "./Components/ProjectLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
