@@ -3,22 +3,61 @@ import React from "react";
 import { Field, ErrorMessage } from "formik";
 import { Review } from "./Review";
 import { FormikStep, FormikStepper } from "./FormikStepper";
+import styled, { css } from "styled-components";
 import valid from "card-validator";
 import * as Yup from "yup";
-import "./style.css";
 import pizzaLogo from "../../img/pizza.png";
 const sleep = (time) => new Promise((acc) => setTimeout(acc, time));
+
+const PizzaLogo = styled.img`
+  width: 100px;
+  border: solid 7px black;
+  border-radius: 100%;
+  margin-right: 1em;
+  padding: 5px;
+`;
+
+const LogoContainer = styled.div`
+  display: flex;
+  align-self: normal;
+  align-items: center;
+  margin-top: 1em;
+`;
+
+const Error = styled(ErrorMessage)`
+  position: absolute;
+  background-color: var(--white);
+  color: red;
+  padding: 5px;
+`;
+
+const InputItem = styled.div`
+  width: 100%;
+  position: relative;
+  margin-top: 2em;
+
+  ${({noMargin}) => 
+    noMargin && css`
+    margin-top: 0;
+    
+    `
+  }
+`
+
+const Container = styled.div`
+  height: calc(90% - 3em);
+`;
 
 const SteppedSignUpForm = () => {
   const [showConfirm, setConfirm] = useState(false);
   const [step, setStep] = useState(0);
   const [{ firstName, lastName, email }, getFormValues] = useState({});
   return (
-    <div className="container">
-      <div className="pizza-logo-container">
-        <img src={pizzaLogo} alt="pizza logo" className="pizza-logo" />
+    <Container>
+      <LogoContainer>
+        <PizzaLogo src={pizzaLogo} alt="pizza logo" />
         <h1>Hothot Slices</h1>
-      </div>
+      </LogoContainer>
       {showConfirm && (
         <div>
           <h2>
@@ -69,43 +108,35 @@ const SteppedSignUpForm = () => {
                 .required("Confirm Password is required"),
             })}
           >
-            <div className="input-item">
+            <InputItem noMargin={true}>
               <label htmlFor="firstName">First Name</label>
               <Field name="firstName" type="text" aria-required="true" />
-              <ErrorMessage
-                className="error"
-                component="div"
-                name="firstName"
-              />
-            </div>
-            <div className="input-item">
+              <Error component="div" name="firstName" />
+            </InputItem>
+            <InputItem>
               <label htmlFor="lastName">Last Name</label>
               <Field name="lastName" type="text" aria-required="true" />
-              <ErrorMessage className="error" component="div" name="lastName" />
-            </div>
-            <div className="input-item">
+              <Error component="div" name="lastName" />
+            </InputItem>
+            <InputItem>
               <label htmlFor="email">email</label>
               <Field name="email" type="email" aria-required="true" />
-              <ErrorMessage className="error" component="div" name="email" />
-            </div>
-            <div className="input-item">
+              <Error component="div" name="email" />
+            </InputItem>
+            <InputItem>
               <label htmlFor="password">Password</label>
               <Field name="password" type="password" aria-required="true" />
-              <ErrorMessage className="error" component="div" name="password" />
-            </div>
-            <div className="input-item">
+              <Error component="div" name="password" />
+            </InputItem>
+            <InputItem>
               <label htmlFor="confirmPassword">Confirm Password</label>
               <Field
                 name="confirmPassword"
                 type="password"
                 aria-required="true"
               />
-              <ErrorMessage
-                className="error"
-                component="div"
-                name="confirmPassword"
-              />
-            </div>
+              <Error component="div" name="confirmPassword" />
+            </InputItem>
           </FormikStep>
           <FormikStep
             label="Order"
@@ -116,7 +147,7 @@ const SteppedSignUpForm = () => {
               drink: Yup.string().required(),
             })}
           >
-            <div className="input-item">
+            <InputItem noMargin={true}>
               <label htmlFor="pizzaType">Select Pizza</label>
               <Field name="pizzaType" as="select" aria-required="true">
                 <option>Choose Pizza</option>
@@ -128,13 +159,9 @@ const SteppedSignUpForm = () => {
                 <option value="Margherita">Margherita</option>
                 <option value="Big Cheese">Big Cheese</option>
               </Field>
-              <ErrorMessage
-                className="error"
-                component="div"
-                name="pizzaType"
-              />
-            </div>
-            <div className="input-item">
+              <Error component="div" name="pizzaType" />
+            </InputItem>
+            <InputItem>
               <label htmlFor="pizzaSize">Select Size</label>
               <Field name="pizzaSize" as="select" aria-required="true">
                 <option>Choose Size</option>
@@ -143,13 +170,9 @@ const SteppedSignUpForm = () => {
                 <option value="large">large</option>
                 <option value="xtra-large">xtra-large</option>
               </Field>
-              <ErrorMessage
-                className="error"
-                component="div"
-                name="pizzaSize"
-              />
-            </div>
-            <div className="input-item">
+              <Error component="div" name="pizzaSize" />
+            </InputItem>
+            <InputItem>
               <label htmlFor="side">Select side</label>
               <Field name="side" as="select" aria-required="true">
                 <option>Choose Side</option>
@@ -161,9 +184,9 @@ const SteppedSignUpForm = () => {
                 </option>
                 <option value="Blonde Brownies">Blonde Brownies</option>
               </Field>
-              <ErrorMessage className="error" component="div" name="side" />
-            </div>
-            <div className="input-item">
+              <Error component="div" name="side" />
+            </InputItem>
+            <InputItem>
               <label htmlFor="drink">Choose Drink</label>
               <Field name="drink" as="select" aria-required="true">
                 <option>Choose Drink</option>
@@ -173,8 +196,8 @@ const SteppedSignUpForm = () => {
                 <option value="Dr. Pepper">Dr. Pepper</option>
                 <option value="Smart Water">Smart Water</option>
               </Field>
-              <ErrorMessage className="error" component="div" name="drink" />
-            </div>
+              <Error component="div" name="drink" />
+            </InputItem>
           </FormikStep>
 
           <FormikStep
@@ -196,27 +219,23 @@ const SteppedSignUpForm = () => {
                 .required(),
             })}
           >
-            <div className="input-item">
+            <InputItem noMargin={true}>
               <label htmlFor="creditCard">Credit Card</label>
               <Field name="creditCard" type="text" />
-              <ErrorMessage
-                className="error"
-                component="div"
-                name="creditCard"
-              />
-            </div>
-            <div className="input-item">
+              <Error component="div" name="creditCard" />
+            </InputItem>
+            <InputItem>
               <label htmlFor="expDate">Exp Date</label>
               <Field name="expDate" type="text" placeholder="mm/yy" />
-              <ErrorMessage className="error" component="div" name="expDate" />
-            </div>
+              <Error component="div" name="expDate" />
+            </InputItem>
           </FormikStep>
           <FormikStep label="Review">
             <Review />
           </FormikStep>
         </FormikStepper>
       )}
-    </div>
+    </Container>
   );
 };
 

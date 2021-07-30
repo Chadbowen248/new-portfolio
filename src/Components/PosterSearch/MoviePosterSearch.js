@@ -1,5 +1,12 @@
 import { useState } from "react";
-import "./style.css";
+import {PosterImage,
+  SearchResultsControls,
+  PosterSearchGrid,
+  SearchControlButtonBack,
+  SearchControlButtonNext,
+  SearchDisplay,
+  SearchDisplaySection,
+  Input} from "./MoviePosterSearchStyles"
 
 const MoviePosterSearch = () => {
   const [error, setError] = useState(null);
@@ -37,77 +44,72 @@ const MoviePosterSearch = () => {
       .catch((_err) => setError(true));
   };
   return (
-    <div className="poster-search-container">
+    <div>
       <h1>Search for Posters</h1>
-      <form
-      className="poster-search-grid"
+      <PosterSearchGrid
         onSubmit={(e) => {
           e.preventDefault();
           getPoster();
         }}
       >
-      <div className="search-controls">
-        <label htmlFor="movie-search">Search</label>
-        <input
-          type="text"
-          name="movie-search"
-          value={searchString}
-          onChange={(e) => {
-            setSearchString(e.target.value);
-          }}
-        />
+        <div>
+          <label htmlFor="movie-search">Search</label>
+          <Input
+            type="text"
+            name="movie-search"
+            value={searchString}
+            onChange={(e) => {
+              setSearchString(e.target.value);
+            }}
+          />
         </div>
-        <button type="submit" className="search-controls__button">
+        <button type="submit">
           Search
         </button>
-      </form>
+      </PosterSearchGrid>
       {error && <h1>Sorry, something went wrong.</h1>}
 
       {isLoaded && !error && (
-        <div className="search-display">
-          <div className="search-display-section">
+        <SearchDisplay>
+          <SearchDisplaySection>
             <ul>
-              <li className="result-meta-item">
+              <li>
                 <strong>Title:</strong>{" "}
                 {searchResults[step].title || "data not available"}
               </li>
-              <li className="result-meta-item">
+              <li>
                 Release Date:{" "}
                 {searchResults[step].releaseDate || "data not available"}
               </li>
-              <li className="result-meta-item">
+              <li>
                 Overview: {searchResults[step].overview || "data not available"}
               </li>
             </ul>
             <div>
-              <img
+              <PosterImage
                 src={`https://image.tmdb.org/t/p/original${searchResults[step]?.poster_path}`}
                 alt="movie poster"
-                className="search-display__image"
               />
-              <div className="search-results-controls">
-                <button
-                  tydivpe="button"
-                  className={step === 0 ? "hidden" : "search-controls__button"}
+              <SearchResultsControls>
+                <SearchControlButtonBack
+                  step={step}
+                  type="button"
                   onClick={() => setStep((state) => state - 1)}
                 >
                   Back
-                </button>
-                <button
+                </SearchControlButtonBack>
+                <SearchControlButtonNext
+                  searchResults={searchResults}
+                  step={step}
                   type="button"
-                  className={
-                    step === searchResults.length - 1
-                      ? "hidden"
-                      : "search-controls__button"
-                  }
                   onClick={() => setStep((state) => state + 1)}
                 >
                   Next
-                </button>
-              </div>
+                </SearchControlButtonNext>
+              </SearchResultsControls>
             </div>
-          </div>
-        </div>
+          </SearchDisplaySection>
+        </SearchDisplay>
       )}
     </div>
   );

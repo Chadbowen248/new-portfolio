@@ -3,9 +3,56 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MoviePosterSearch from "./Components/PosterSearch/MoviePosterSearch";
 import SteppedSignUpForm from "./Components/SteppedSignUpForm/SteppedSignUpForm";
 import CryptoPaymentApp from "./Components/CryptoTracker/CryptoPaymentApp";
+import { Header } from "./Components/Header";
+import styled from "styled-components";
 import AboutMe from "./Components/AboutMe";
 import ProjectLink from "./Components/ProjectLink";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const ProjectsWrapper = styled.ul`
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding-left: 0;
+  max-width: 338px;
+  padding-right: 1.675em;
+  padding-left: 1.675em;
+  > li + li {
+    padding-top: 0.3rem;
+  }
+  @media (min-width: 760px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+`;
+
+const GridContainer = styled.div`
+@media (min-width: 760px) {
+  
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding-right: 1.675em;
+    padding-left: 1.675em;
+    grid-column-gap: 1em;
+  }
+`
+
+const Intro = styled.div`
+  padding-left: 1.675em;
+  padding-right: 1.675em;
+`
+
+const ProjectsDisplay = styled.div`
+  padding-left: 1.675em;
+  padding-right: 1.675em;
+  margin-left: 1.675em;
+  margin-right: 1.675em;
+  border: var(--white) solid 1px;
+  border-radius: 0.5em;
+  @media (min-width: 760px) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+`
 
 const App = () => {
   const projects = [
@@ -50,55 +97,23 @@ const App = () => {
   ];
   return (
     <Router>
-      <header>
-        <nav>
-          <ul className="header-nav">
-            <li>Chad Bowen</li>
-            <li>
-              <a
-                href="www.google.com"
-                className="header-nav__link"
-                aria-label="View source code on Github"
-              >
-                <span className="header-nav__link--text">Github</span>
-                <FontAwesomeIcon
-                  icon={["fab", "github"]}
-                  className="header-nav__link--icon"
-                />
-              </a>
-            </li>
-            <li>
-              <a
-                href="www.google.com"
-                className="header-nav__link"
-                aria-label="View my Linkedin"
-              >
-                <span className="header-nav__link--text">Linkedin</span>
-                <FontAwesomeIcon
-                  icon={["fab", "linkedin-in"]}
-                  className="header-nav__link--icon"
-                />
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <div className="intro">
+      <Header />
+      <Intro>
         <p>Hey There,</p>
-        <p className="intro__copy">
+        <p>
           I'm Chad, a web developer with a love for React, CSS, and advocate for
           a11y best practices, below are some of the projects I've worked on.
         </p>
-      </div>
-      <div className="grid-container">
+      </Intro>
+      <GridContainer>
         <nav>
-          <ul className="projects">
+          <ProjectsWrapper>
             {projects.map((project) => (
               <ProjectLink {...project} key={project.linkText} />
             ))}
-          </ul>
+          </ProjectsWrapper>
         </nav>
-        <div className="about-me">
+        <ProjectsDisplay>
           <Switch>
             <Route exact path="/">
               <AboutMe />
@@ -113,8 +128,8 @@ const App = () => {
               <CryptoPaymentApp />
             </Route>
           </Switch>
-        </div>
-      </div>
+        </ProjectsDisplay>
+      </GridContainer>
     </Router>
   );
 };
