@@ -26,6 +26,35 @@ const ProjectsWrapper = styled.ul`
   }
 `;
 
+const GridContainer = styled.div`
+@media (min-width: 760px) {
+  
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding-right: 1.675em;
+    padding-left: 1.675em;
+    grid-column-gap: 1em;
+  }
+`
+
+const Intro = styled.div`
+  padding-left: 1.675em;
+  padding-right: 1.675em;
+`
+
+const ProjectsDisplay = styled.div`
+  padding-left: 1.675em;
+  padding-right: 1.675em;
+  margin-left: 1.675em;
+  margin-right: 1.675em;
+  border: var(--white) solid 1px;
+  border-radius: 0.5em;
+  @media (min-width: 760px) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+`
+
 const App = () => {
   const projects = [
     {
@@ -70,14 +99,14 @@ const App = () => {
   return (
     <Router>
       <Header />
-      <div className="intro">
+      <Intro>
         <p>Hey There,</p>
         <p>
           I'm Chad, a web developer with a love for React, CSS, and advocate for
           a11y best practices, below are some of the projects I've worked on.
         </p>
-      </div>
-      <div className="grid-container">
+      </Intro>
+      <GridContainer>
         <nav>
           <ProjectsWrapper>
             {projects.map((project) => (
@@ -85,7 +114,7 @@ const App = () => {
             ))}
           </ProjectsWrapper>
         </nav>
-        <div className="about-me">
+        <ProjectsDisplay>
           <Switch>
             <Route exact path="/">
               <AboutMe />
@@ -100,8 +129,8 @@ const App = () => {
               <CryptoPaymentApp />
             </Route>
           </Switch>
-        </div>
-      </div>
+        </ProjectsDisplay>
+      </GridContainer>
     </Router>
   );
 };
