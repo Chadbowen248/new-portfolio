@@ -44,7 +44,7 @@ export const Header = () => {
         <HeaderNavigation>
           <li>Chad Bowen</li>
           <li>
-            <a href="www.google.com" aria-label="View source code on Github">
+            <a href="https://github.com/Chadbowen248" aria-label="View source code on Github" target="_blank" rel="noopener noreferrer">
               <HeaderLinkText>Github</HeaderLinkText>
               <IconStyle>
                 <FontAwesomeIcon icon={["fab", "github"]} />
@@ -52,7 +52,7 @@ export const Header = () => {
             </a>
           </li>
           <li>
-            <a href="www.google.com" aria-label="View my Linkedin">
+            <a href="https://www.linkedin.com/in/chad-bowen-096b97111/" aria-label="View my Linkedin" target="_blank" rel="noopener noreferrer">
               <HeaderLinkText>Linkedin</HeaderLinkText>
               <IconStyle>
                 <FontAwesomeIcon icon={["fab", "linkedin-in"]} />

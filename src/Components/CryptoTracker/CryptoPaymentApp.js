@@ -25,6 +25,9 @@ const CryptoPaymentApp = () => {
   const addCoins = (e) => {
     const coinToAdd = allCoins.find(({ id }) => id === Number(e.target.value));
     const addedCoins = [...coins, coinToAdd];
+    if(e.target.value === "You must choose.") {
+      return
+    }
     setCoins(addedCoins);
     localStorage.setItem("coins", JSON.stringify(addedCoins));
   };
@@ -43,8 +46,10 @@ const CryptoPaymentApp = () => {
 
   return (
     <div>
+      <h1>Can you retire yet?</h1>
       <label htmlFor="coin-search">Select Coin to track</label>
       <select name="coin-search" onChange={(e) => addCoins(e)}>
+        <option>You must choose.</option>
         {allCoins?.map(({ symbol, id }) => (
           <option value={id} key={id}>
             {symbol}
