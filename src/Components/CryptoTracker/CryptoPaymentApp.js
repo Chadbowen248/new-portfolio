@@ -63,7 +63,7 @@ const CryptoPaymentApp = () => {
           </option>
         ))}
       </select>
-      {coins.length === 0 && localStorageCoins.length === 0 && <h2>Nothing to show here</h2>}
+      {coins.length === 0 && localStorageCoins?.length === 0 && <h2>Nothing to show here</h2>}
       {coins.length !== 0 && (
         <TableContainer component={Paper}>
           <Table aria-label="simple table">
