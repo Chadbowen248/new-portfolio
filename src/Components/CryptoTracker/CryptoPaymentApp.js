@@ -10,32 +10,39 @@ import Paper from "@material-ui/core/Paper";
 const CryptoPaymentApp = () => {
   const [allCoins, setAllCoins] = useState([]);
   const [coins, setCoins] = useState([]);
+  const localStorageCoins = JSON.parse(localStorage.getItem("coins"));
+
   useEffect(() => {
     fetch("/api/getCoinData")
       .then((res) => res.json())
       .then(({ data }) => setAllCoins(data));
   }, []);
   useEffect(() => {
-    const coins = localStorage.getItem("coins");
-    if (coins) {
-      setCoins(JSON.parse(coins));
+    const coinsFromLocalStorage = JSON.parse(localStorage.getItem("coins"));
+    const stateFromLocalStorage = coinsFromLocalStorage?.map(coinId => allCoins.find(({id}) => id === coinId))
+    if (coinsFromLocalStorage && !stateFromLocalStorage.includes(undefined)) {
+      setCoins(stateFromLocalStorage);
     }
-  }, []);
+  }, [allCoins]);
 
   const addCoins = (e) => {
     const coinToAdd = allCoins.find(({ id }) => id === Number(e.target.value));
     const addedCoins = [...coins, coinToAdd];
+    const coinsLocalStorage = JSON.parse(localStorage.getItem("coins")) || []
+    const addedCoinsIDs = [...coinsLocalStorage, coinToAdd.id]
     if(e.target.value === "You must choose.") {
       return
     }
     setCoins(addedCoins);
-    localStorage.setItem("coins", JSON.stringify(addedCoins));
+    localStorage.setItem("coins", JSON.stringify(addedCoinsIDs));
   };
 
   const removeCoin = (id) => {
+    const coinsLocalStorage = JSON.parse(localStorage.getItem("coins"))
     const newState = coins.filter((coin) => coin.id !== id);
+    const localStorageState = coinsLocalStorage.filter(coinID => coinID !== id)
     setCoins(newState);
-    localStorage.setItem("coins", JSON.stringify(newState));
+    localStorage.setItem("coins", JSON.stringify(localStorageState));
   };
 
   const removeButtonStyles = {
@@ -56,7 +63,7 @@ const CryptoPaymentApp = () => {
           </option>
         ))}
       </select>
-      {coins.length === 0 && <h2>Nothing to show here</h2>}
+      {coins.length === 0 && localStorageCoins.length === 0 && <h2>Nothing to show here</h2>}
       {coins.length !== 0 && (
         <TableContainer component={Paper}>
           <Table aria-label="simple table">

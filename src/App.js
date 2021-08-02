@@ -5,7 +5,6 @@ import SteppedSignUpForm from "./Components/SteppedSignUpForm/SteppedSignUpForm"
 import CryptoPaymentApp from "./Components/CryptoTracker/CryptoPaymentApp";
 import { Header } from "./Components/Header";
 import styled from "styled-components";
-import AboutMe from "./Components/AboutMe";
 import ProjectLink from "./Components/ProjectLink";
 
 const ProjectsWrapper = styled.ul`
@@ -81,7 +80,7 @@ const App = () => {
     {
       linkText: "Order a Pizza",
       link: "/steppedSignUpForm",
-      madeWith: ["React", "Firebase"],
+      madeWith: ["React", "Formik", "Yup"],
       description:
         "A stepped form to register an account and order a pizza. (sorry just mock data, a pizza will not come)",
       external: false,
@@ -116,7 +115,6 @@ const App = () => {
         <ProjectsDisplay>
           <Switch>
             <Route exact path="/">
-              <AboutMe />
             </Route>
             <Route path="/steppedSignUpForm">
               <SteppedSignUpForm />
