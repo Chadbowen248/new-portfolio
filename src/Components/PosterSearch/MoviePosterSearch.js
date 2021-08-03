@@ -1,12 +1,14 @@
 import { useState } from "react";
-import {PosterImage,
+import {
+  PosterImage,
   SearchResultsControls,
   PosterSearchGrid,
   SearchControlButtonBack,
   SearchControlButtonNext,
   SearchDisplay,
   SearchDisplaySection,
-  Input} from "./MoviePosterSearchStyles"
+  Input,
+} from "./MoviePosterSearchStyles";
 
 const MoviePosterSearch = () => {
   const [error, setError] = useState(null);
@@ -32,7 +34,9 @@ const MoviePosterSearch = () => {
             title,
             id,
             overview,
-            releaseDate: formatDate(release_date),
+            releaseDate: release_date
+              ? formatDate(release_date)
+              : "data not available",
             poster_path,
           })
         );
@@ -63,7 +67,7 @@ const MoviePosterSearch = () => {
             }}
           />
         </div>
-        <button type="submit">
+        <button type="submit" disabled={!searchString}>
           Search
         </button>
       </PosterSearchGrid>
@@ -77,10 +81,7 @@ const MoviePosterSearch = () => {
                 <strong>Title:</strong>{" "}
                 {searchResults[step].title || "data not available"}
               </li>
-              <li>
-                Release Date:{" "}
-                {searchResults[step].releaseDate || "data not available"}
-              </li>
+              <li>Release Date: {searchResults[step].releaseDate}</li>
               <li>
                 Overview: {searchResults[step].overview || "data not available"}
               </li>
